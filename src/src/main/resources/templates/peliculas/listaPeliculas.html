@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>PelisPlanet | Listado de Peliculas</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" >
+  </head>
+
+  <body>
+      <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Pelisapp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item-active">
+              <a class="nav-link" th:href="@{/clientes/index}">Usuarios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Peliculas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/administradores/index}">Administradores</a>
+            </li>      
+          </ul>  
+                   <a class="btn btn-primary" th:href="@{/Home}">Salir</a>
+
+        </div>
+      </nav>
+    </header>
+
+    <main role="main">     
+      <hr>
+      <div class="container"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>Listado de Peliculas disponibles</strong></h4>              
+          <div class="card-body">
+		   <a class="btn btn-primary" th:href="@{/peliculas/nueva}" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a><br><br>
+            <div class="alert alert-primary" role="alert"  th:it="${msg!=null}" th:text="${msg}"></div>
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+				  <th scope="col">Id</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Autor</th>                  
+                  <th scope="col">Fecha de salida</th>
+                  <th scope="col">Precio de renta</th>
+                  <th scope="col">Operaciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="pelicula:${peliculas}">
+				  <td th:text="${pelicula.id}"></td>
+                  <td th:text="${pelicula.nombrePeli}"></td>                  
+                  <td th:text="${pelicula.autor}"></td>
+                  <td th:text="${pelicula.fecha}"></td>
+                  <td th:text="${pelicula.precio_salida}"></td>
+                  <td>
+                    <a th:href="@{/peliculas/modificar(id=${pelicula.id})}" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/peliculas/eliminar(id=${pelicula.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a th:href="@{/peliculas/vista(id=${pelicula.id})}" class="btn btn-success btn-sm" role="button" title="Vista."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>                  
+                  </td>
+                </tr>
+                          
+              </tbody>
+            </table>
+            
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+
+
+ <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2023 PelisPlanet.com | WebApp Desarrollada con Spring Boot 2.1.2 | Carmona Hernandez Christian Jovani, Santiago Perez Sebastian 
+        Canva. |
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
+  </body>
+</html>

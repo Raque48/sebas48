@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>PelisPlanet | Registro de Peliculas disponibles</title>
+   <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+<header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Pelisapp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item-active">
+              <a class="nav-link" th:href="@{/clientes/index}">Usuarios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" th:href="@{/peliculas/index}">Peliculas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/administradores/index}">Administradores</a>
+            </li>      
+          </ul>  
+                   <a class="btn btn-primary" th:href="@{/Home}">Salir</a>
+
+        </div>
+      </nav>
+    </header>
+
+    <main role="main">     
+      <hr>
+      <div class="container"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>Datos de la categoría</strong></h4>              
+          <div class="card-body">
+            <form method="post" 
+            		th:action="@{/peliculas/guardar}"
+            		th:object="${pelicula}" enctype="multipart/form-data">              
+              <div class="row">
+                <div class="col-md-6"> 
+                  <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="hidden" th:field="*{id}">
+                    <input type="text" th:field="*{nombrePeli}" class="form-control" id="nombre" name="nombre" placeholder="Escriba el nombre de la pelicula" required="required">
+                  </div>
+                </div>                
+              </div>
+              <div class="row">
+                <div class="col-md-6"> 
+                  <div class="form-group">
+                    <label for="autor">Autor</label>
+                    <input type="text" th:field="*{autor}" class="form-control" id="autor" name="autor" placeholder="Escriba la fecha de la pelicula" required="required">
+                  </div>
+                </div>                
+              </div>
+              <div class="row">
+                <div class="col-md-6"> 
+                  <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="text" class="form-control"  th:field="*{fecha}" id="fecha" name="fecha" placeholder="Escriba el nombre del autor de la pelicula" required="required">
+                  </div>
+                </div>                
+              </div> 
+               <div class="row">
+                <div class="col-md-6"> 
+                  <div class="form-group">
+                    <label for="precio_salida">Precio</label>
+                    <input type="text" th:field="*{precio_salida}" class="form-control" id="precio_salida" name="precio_salida" placeholder="Escriba el presio de la pelicula" required="required">
+                  </div>
+                </div>                
+              </div> 
+              <div class="row">
+                <div class="col-md-6"> 
+                  <div class="form-group">
+                     <label for="">Imagen</label>
+                  </div>
+                </div>                
+              </div>  
+              <div class="row">
+                <div class="col-md-6"> 
+                  <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <textarea class="form-control" th:field="*{descripcion}" name="descripcion" id="descripcion" rows="2"></textarea>
+                  </div> 
+                </div>                
+              </div>
+               
+              <hr>
+              <button type="submit" title="Guardar el registro." class="btn btn-primary">Guardar</button>  
+            </form>
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+    
+     <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2023 PelisPlanet.com | WebApp Desarrollada con Spring Boot 2.1.2 | Carmona Hernandez Christian Jovani, Santiago Perez Sebastian 
+        Canva. |
+        </p>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script>
+      
+      $(function () {
+          $("#fecha").datepicker({dateFormat: 'dd-mm-yy'});
+        }
+      );
+      
+      
+      tinymce.init({
+          selector: '#detalles',
+          plugins: "textcolor, table lists code",
+          toolbar: " undo redo | bold italic | alignleft aligncenter alignright alignjustify \n\
+                    | bullist numlist outdent indent | forecolor backcolor table code"
+      });
+      
+      
+    </script>
+  </body>
+</html>

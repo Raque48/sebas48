@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>EmpleosApp | Vista de la Pelicula</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" >
+  </head>
+
+  <body>
+<header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Pelisapp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item-active">
+              <a class="nav-link" th:href="@{/clientes/index}">Usuarios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" th:href="@{/peliculas/index}">Peliculas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/administradores/index}">Administradores</a>
+            </li>      
+          </ul>  
+                   <a class="btn btn-primary" th:href="@{/Home}">Salir</a>
+
+        </div>
+      </nav>
+    </header>
+
+
+    <main role="main">
+      <hr>
+      <div class="container"> 
+
+        <div class="row">
+          <div class="col-md-3">            
+            <img class="rounded mx-auto d-block" th:src="@{/imagenes/{img}{img=${pelicula.imagen}}}" alt="Generic placeholder image" width="220" height="220">            
+          </div>
+          <div class="col-md-9">
+            <div class="card">
+              <h4 class="card-header">Aplicar para <strong th:text="${pelicula.nombrePeli}"></strong></h4>              
+              <div class="card-body">
+                <h5 class="card-title"><strong>Autor: </strong> <span th:text="${pelicula.autor}"></span></h5>
+                <h5 class="card-title"><strong>Fecha de salida: </strong> <span th:text="${pelicula.fecha}"> </span></h5>                
+                <h5 class="card-title"><strong>Precio de renta: </strong><span th:text="${pelicula.precio_salida}"></span></h5>
+                
+                <div class="card bg-light mb-3" >
+                  <div class="card-body">
+                    <h5 class="card-title"><strong>Descripcion:</h5>
+                    <p class="card-text" th:text="${pelicula.descripcion}"></p>
+                  </div>
+                </div>   
+                <a class="btn btn-primary" th:href="@{/peliculas/index}" role="button" title=""><i class="fas fa-file" aria-hidden="true"></i> Regresar</a>                            
+              </div>
+            </div>  
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+ <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2023 PelisPlanet.com | WebApp Desarrollada con Spring Boot 2.1.2 | Carmona Hernandez Christian Jovani, Santiago Perez Sebastian 
+        Canva. |
+        </p>
+      </div>
+    </footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>
